@@ -10,6 +10,9 @@ const NavStyles = styled.nav`
     margin: 0;
     padding: 0;
     list-style: none;
+    /* Nice vertical alignment on mobile screens */
+    display: flex;
+    align-items: center;
   }
 
   li {

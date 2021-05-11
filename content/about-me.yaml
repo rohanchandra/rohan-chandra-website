@@ -1,0 +1,62 @@
+links:
+  - href: "mailto:hi@rohanchandra.dev"
+    title: hi@rohanchandra.dev
+  - href: "https://github.com/rohanchandra"
+    title: github.com/rohanchandra
+  - href: "https://linkedin.com/in/rohanchandra"
+    title: linkedin.com/in/rohanchandra
+skills:
+  - name: Build
+    emoji: 🛠️
+    isFeatured: true
+    skills:
+      - name: React
+        url: https://reactjs.org/
+      - name: HTML & CSS
+        url: https://www.w3.org/standards/webdesign/htmlcss
+      - name: TypeScript
+        url: https://www.typescriptlang.org/
+      - name: Flutter
+        url: https://flutter.dev/
+      - name: Python
+        url: https://www.python.org/
+      - name: SQL
+        url: https://en.wikipedia.org/wiki/SQL
+  - name: Design
+    emoji: 🎨
+    isFeatured: false
+    skills:
+      - name: Figma
+        url: https://www.figma.com/
+  - name: Launch
+    emoji: 🚀
+    isFeatured: false
+    skills:
+      - name: Docker
+        url: https://www.docker.com/
+      - name: Kubernetes
+        url: https://kubernetes.io/
+  - name: Analyse
+    emoji: 🔬
+    isFeatured: false
+    skills:
+      - name: Elasticsearch
+        url: https://www.elastic.co/
+      - name: Kibana
+        url: https://www.elastic.co/kibana
+      - name: Grafana
+        url: https://grafana.com/
+      - name: R
+        url: https://www.r-project.org/
+      - name: Sentry
+        url: https://sentry.io/
+  - name: Tooling
+    emoji: 🧰
+    isFeatured: false
+    skills:
+      - name: Linux
+        url: https://en.wikipedia.org/wiki/Linux
+      - name: Git
+        url: https://git-scm.com/
+      - name: GitHub Actions
+        url: https://github.com/

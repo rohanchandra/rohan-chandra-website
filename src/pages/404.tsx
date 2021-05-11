@@ -2,14 +2,7 @@ import SEO from "../components/SEO";
 import { PageProps } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-// @ts-ignore
-import songsData from "../../content/HTTP-404-songs.yaml";
-
-interface FourOhFourSong {
-  title: string;
-  artist: string;
-  url: string;
-}
+import { FourOhFourSong, HTTP404Songs } from "../data/HTTP-404-songs";
 
 const FourOhFourPageStyles = styled.div`
   width: 100%;
@@ -43,7 +36,7 @@ const selectRandomSong = (choices: FourOhFourSong[]): FourOhFourSong => {
 };
 
 const FourOhFourPage: React.FC<PageProps> = () => {
-  const song = selectRandomSong(songsData);
+  const song = selectRandomSong(HTTP404Songs);
 
   return (
     <>

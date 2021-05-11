@@ -21,6 +21,14 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--background-color);
     color: var(--text-color);
   }
+
+  html {
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 `;
 
 export default GlobalStyles;
