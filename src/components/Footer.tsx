@@ -16,6 +16,10 @@ const FooterStyles = styled.footer`
     margin: 0;
     flex-grow: 1;
   }
+
+  a {
+    text-align: right;
+  }
 `;
 
 const Footer: React.FC = () => {
