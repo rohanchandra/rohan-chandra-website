@@ -3259,10 +3259,7 @@ export type SiteMetadataQuery = { __typename?: "Query" } & {
   site: Maybe<
     { __typename?: "Site" } & {
       siteMetadata: Maybe<
-        { __typename?: "SiteSiteMetadata" } & Pick<
-          SiteSiteMetadata,
-          "title" | "description"
-        >
+        { __typename?: "SiteSiteMetadata" } & Pick<SiteSiteMetadata, "title">
       >;
     }
   >;

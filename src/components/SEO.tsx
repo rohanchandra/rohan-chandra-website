@@ -15,7 +15,6 @@ const SEO: React.FC<SEOProps> = ({ title, description, children }) => {
       site {
         siteMetadata {
           title
-          description
         }
       }
     }
@@ -30,10 +29,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, children }) => {
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta charSet="utf-8" />
-      <meta
-        name="description"
-        content={description ?? site?.siteMetadata?.description ?? ""}
-      />
+      <meta name="description" content={description ?? ""} />
 
       {children}
     </Helmet>
