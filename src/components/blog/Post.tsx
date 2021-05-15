@@ -6,6 +6,7 @@ import { DateTime } from "../ui/DateTime";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXComponents } from "../mdx/components";
 import { MDXProvider } from "@mdx-js/react";
+import SEO from "../SEO";
 
 const PostHeading = styled.h1`
   margin-bottom: 0.5rem;
@@ -38,6 +39,8 @@ const PostPage: React.FC<PostPageProps> = ({ data: { mdx } }) => {
 
   return (
     <>
+      <SEO title={title} />
+
       <PostHeading>{title}</PostHeading>
       <DateTime dateTime={rawDate}>{formattedDate}</DateTime>
 

@@ -5,6 +5,7 @@ import Description from "../components/about/Description";
 import Links from "../components/about/Links";
 import Skills from "../components/about/Skills";
 import styled from "styled-components";
+import SEO from "../components/SEO";
 
 const IndexStyles = styled.div`
   /* Vertical center */
@@ -26,11 +27,15 @@ const IndexPage: React.FC<PageProps> = () => {
   `);
 
   return (
-    <IndexStyles>
-      <Description />
-      <Links />
-      <Skills />
-    </IndexStyles>
+    <>
+      <SEO title="About" />
+
+      <IndexStyles>
+        <Description />
+        <Links />
+        <Skills />
+      </IndexStyles>
+    </>
   );
 };
 

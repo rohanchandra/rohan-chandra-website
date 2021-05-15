@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, PageProps, useStaticQuery } from "gatsby";
 import { PostsIndexQuery } from "-/graphqlTypes";
 import PostPreview from "../components/blog/PostPreview";
+import SEO from "../components/SEO";
 
 const BlogPage: React.FC<PageProps> = () => {
   const { posts } = useStaticQuery<PostsIndexQuery>(graphql`
@@ -24,6 +25,8 @@ const BlogPage: React.FC<PageProps> = () => {
 
   return (
     <>
+      <SEO title="Blog" />
+
       {posts.nodes.map((post) => (
         <PostPreview key={post.id} {...post} {...post.frontmatter} />
       ))}
