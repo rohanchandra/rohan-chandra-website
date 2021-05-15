@@ -2,6 +2,7 @@ import { Skill } from "../../data/about-me";
 import React from "react";
 import styled from "styled-components";
 import { Row } from "../ui/Row";
+import ExternalLink from "../ExternalLink";
 
 const Item = styled.li`
   padding-right: 1rem;
@@ -22,7 +23,7 @@ const SkillList: React.FC<SkillListProps> = ({ skills }) => {
     <Row id="skill-list">
       {skills.map((skill) => (
         <Item key={skill.name}>
-          <a href={skill.url}>{skill.name}</a>
+          <ExternalLink href={skill.url}>{skill.name}</ExternalLink>
         </Item>
       ))}
     </Row>

@@ -2,6 +2,7 @@ import { links } from "../../data/about-me";
 import React from "react";
 import styled from "styled-components";
 import { Row } from "../ui/Row";
+import ExternalLink from "../ExternalLink";
 
 const LinksStyles = styled.nav`
   a {
@@ -19,7 +20,7 @@ const Links: React.FC = () => {
       <Row>
         {links.map((link) => (
           <Item key={link.href}>
-            <a href={link.href}>{link.title}</a>
+            <ExternalLink href={link.href}>{link.title}</ExternalLink>
           </Item>
         ))}
       </Row>
