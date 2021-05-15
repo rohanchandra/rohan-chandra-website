@@ -25,7 +25,7 @@ const BlogPage: React.FC<PageProps> = () => {
 
   return (
     <>
-      <SEO title="Blog" />
+      <SEO title="Blog" description="View blog posts" />
 
       {posts.nodes.map((post) => (
         <PostPreview key={post.id} {...post} {...post.frontmatter} />

@@ -16,11 +16,13 @@ const IndexStyles = styled.div`
 `;
 
 const IndexPage: React.FC<PageProps> = () => {
-  const data = useStaticQuery<IndexQuery>(graphql`
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery<IndexQuery>(graphql`
     query Index {
       site {
         siteMetadata {
-          title
+          description
         }
       }
     }
@@ -28,7 +30,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <>
-      <SEO title="About" />
+      <SEO title="About" description={siteMetadata.description} />
 
       <IndexStyles>
         <Description />

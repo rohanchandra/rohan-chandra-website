@@ -40,7 +40,7 @@ const FourOhFourPage: React.FC<PageProps> = () => {
 
   return (
     <>
-      <SEO title="404" />
+      <SEO title="404" description="Not Found" />
 
       <FourOhFourPageStyles>
         <h1 aria-label="404">4😱4</h1>

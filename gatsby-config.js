@@ -3,6 +3,7 @@ const remarkSlug = require("remark-slug");
 module.exports = {
   siteMetadata: {
     title: "Rohan Chandra",
+    description: "Software engineer in Sydney, Australia.",
   },
   plugins: [
     "gatsby-plugin-styled-components",
