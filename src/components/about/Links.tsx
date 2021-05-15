@@ -11,7 +11,7 @@ const LinksStyles = styled.nav`
 `;
 
 const Item = styled.li`
-  padding-right: 1rem;
+  padding: 0.25rem 1rem 0.25rem 0;
 `;
 
 const Links: React.FC = () => {
