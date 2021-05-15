@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import styled from "styled-components";
+import { TitleQuery } from "-/graphqlTypes";
 
 const NavStyles = styled.nav`
   margin-top: 3.5rem;
@@ -51,12 +52,24 @@ const NavStyles = styled.nav`
 `;
 
 const Nav: React.FC = () => {
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery<TitleQuery>(graphql`
+    query Title {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+
   return (
     <NavStyles>
       <ul>
         <li>
           <Link id="home" to="/">
-            Rohan Chandra
+            {siteMetadata.title}
           </Link>
         </li>
 

@@ -3274,6 +3274,18 @@ export type FooterQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type TitleQueryVariables = Exact<{ [key: string]: never }>;
+
+export type TitleQuery = { __typename?: "Query" } & {
+  site: Maybe<
+    { __typename?: "Site" } & {
+      siteMetadata: Maybe<
+        { __typename?: "SiteSiteMetadata" } & Pick<SiteSiteMetadata, "title">
+      >;
+    }
+  >;
+};
+
 export type SiteMetadataQueryVariables = Exact<{ [key: string]: never }>;
 
 export type SiteMetadataQuery = { __typename?: "Query" } & {
