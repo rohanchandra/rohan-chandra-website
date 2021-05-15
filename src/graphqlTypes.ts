@@ -3341,18 +3341,6 @@ export type PostsIndexQuery = { __typename?: "Query" } & {
   };
 };
 
-export type DemoQueryVariables = Exact<{ [key: string]: never }>;
-
-export type DemoQuery = { __typename?: "Query" } & {
-  site: Maybe<
-    { __typename?: "Site" } & {
-      siteMetadata: Maybe<
-        { __typename?: "SiteSiteMetadata" } & Pick<SiteSiteMetadata, "title">
-      >;
-    }
-  >;
-};
-
 export type IndexQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IndexQuery = { __typename?: "Query" } & {
