@@ -36,6 +36,16 @@ const selectRandomSong = (choices: FourOhFourSong[]): FourOhFourSong => {
 };
 
 const FourOhFourPage: React.FC<PageProps> = () => {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   const song = selectRandomSong(HTTP404Songs);
 
   return (
