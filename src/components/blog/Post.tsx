@@ -29,11 +29,11 @@ export const pageQuery = graphql`
   }
 `;
 
-interface Props {
+interface PostPageProps {
   data: PostByIdQuery;
 }
 
-const PostPage: React.FC<Props> = ({ data: { mdx } }) => {
+const PostPage: React.FC<PostPageProps> = ({ data: { mdx } }) => {
   const { title, formattedDate, rawDate } = mdx.frontmatter;
 
   return (

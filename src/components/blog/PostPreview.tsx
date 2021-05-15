@@ -19,7 +19,7 @@ const EmojiWrapper = styled.span`
   font-size: 0.9rem;
 `;
 
-interface Props {
+interface PostPreviewProps {
   slug: string;
   title: string;
   excerpt: string;
@@ -28,7 +28,7 @@ interface Props {
   emoji?: string;
 }
 
-const PostPreview: React.FC<Props> = ({
+const PostPreview: React.FC<PostPreviewProps> = ({
   slug,
   title,
   excerpt,
