@@ -3,7 +3,7 @@ import { PageProps } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { FourOhFourSong, HTTP404Songs } from "../data/HTTP-404-songs";
-import ExternalLink from "-/components/ExternalLink";
+import ExternalLink from "../components/ExternalLink";
 
 const FourOhFourPageStyles = styled.div`
   width: 100%;
