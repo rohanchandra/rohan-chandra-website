@@ -3,6 +3,8 @@ const remarkSlug = require("remark-slug");
 module.exports = {
   siteMetadata: {
     title: "Rohan Chandra",
+    author: "Rohan Chandra",
+    repo: "https://github.com/rohanchandra/rohanchandra-website",
     description: "Software engineer in Sydney, Australia.",
   },
   plugins: [

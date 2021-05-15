@@ -2286,6 +2286,8 @@ export enum SiteFieldsEnum {
   buildTime = "buildTime",
   siteMetadata___title = "siteMetadata___title",
   siteMetadata___description = "siteMetadata___description",
+  siteMetadata___author = "siteMetadata___author",
+  siteMetadata___repo = "siteMetadata___repo",
   port = "port",
   host = "host",
   id = "id",
@@ -3214,11 +3216,15 @@ export type SiteSiteMetadata = {
   __typename?: "SiteSiteMetadata";
   title: Maybe<Scalars["String"]>;
   description: Maybe<Scalars["String"]>;
+  author: Maybe<Scalars["String"]>;
+  repo: Maybe<Scalars["String"]>;
 };
 
 export type SiteSiteMetadataFilterInput = {
   title: Maybe<StringQueryOperatorInput>;
   description: Maybe<StringQueryOperatorInput>;
+  author: Maybe<StringQueryOperatorInput>;
+  repo: Maybe<StringQueryOperatorInput>;
 };
 
 export type SiteSortInput = {
@@ -3251,6 +3257,21 @@ export type TransformOptions = {
 
 export type WebPOptions = {
   quality: Maybe<Scalars["Int"]>;
+};
+
+export type FooterQueryVariables = Exact<{ [key: string]: never }>;
+
+export type FooterQuery = { __typename?: "Query" } & {
+  site: Maybe<
+    { __typename?: "Site" } & {
+      siteMetadata: Maybe<
+        { __typename?: "SiteSiteMetadata" } & Pick<
+          SiteSiteMetadata,
+          "author" | "repo"
+        >
+      >;
+    }
+  >;
 };
 
 export type SiteMetadataQueryVariables = Exact<{ [key: string]: never }>;
