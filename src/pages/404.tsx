@@ -3,6 +3,7 @@ import { PageProps } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { FourOhFourSong, HTTP404Songs } from "../data/HTTP-404-songs";
+import ExternalLink from "-/components/ExternalLink";
 
 const FourOhFourPageStyles = styled.div`
   width: 100%;
@@ -56,9 +57,9 @@ const FourOhFourPage: React.FC<PageProps> = () => {
         <h1 aria-label="404">4😱4</h1>
         <h2>Not Found</h2>
 
-        <a href={song.url} title={`${song.title} by ${song.artist}`}>
+        <ExternalLink href={song.url} title={`${song.title} by ${song.artist}`}>
           {song.title}
-        </a>
+        </ExternalLink>
       </FourOhFourPageStyles>
     </>
   );
