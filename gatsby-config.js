@@ -1,3 +1,5 @@
+const remarkSlug = require("remark-slug");
+
 module.exports = {
   siteMetadata: {
     title: "Rohan Chandra",
@@ -13,7 +15,6 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -31,6 +32,19 @@ module.exports = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        remarkPlugins: [remarkSlug],
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: "./content/blog",
+        name: "posts",
+      },
     },
   ],
 };

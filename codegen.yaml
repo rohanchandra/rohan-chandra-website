@@ -12,5 +12,6 @@ generates:
         - prettier --write
     config:
       avoidOptionals: true
+      maybeValue: "T"
       namingConvention:
         enumValues: "keep"
