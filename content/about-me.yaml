@@ -51,7 +51,7 @@ skills:
       - name: Sentry
         url: https://sentry.io/
   - name: Tooling
-    emoji: 🧰
+    emoji: 📏
     isFeatured: false
     skills:
       - name: Linux
