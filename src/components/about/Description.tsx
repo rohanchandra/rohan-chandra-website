@@ -20,6 +20,11 @@ const Emoji = styled.span`
 
 // Animates emoji with slight rotation to right.
 const WaveTransition = styled(Emoji)`
+  /* Do not show this emoji & animation on very small screens for cleaner display of description text */
+  @media (max-width: 50ch) {
+    display: none;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     transition: 0.5s;
     transition-timing-function: ease-in-out;
