@@ -15,8 +15,7 @@ const GlobalStyles = createGlobalStyle`
     --accent-background-color: #283734;
     --code-background-color: #252946;
   
-    --footer-background-color: #272d36;
-    --footer-border-color: #363d48;
+    --footer-border-color: #283734;
     color-scheme: dark;
   }
 

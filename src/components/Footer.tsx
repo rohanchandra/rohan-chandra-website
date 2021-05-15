@@ -5,7 +5,6 @@ const FooterStyles = styled.footer`
   border: 1px solid var(--footer-border-color);
   border-bottom: none;
   border-radius: 1em 1em 0 0;
-  background-color: var(--footer-background-color);
   color: var(--grey);
   font-size: 0.9rem;
   padding: 1.15rem 1.5rem;
