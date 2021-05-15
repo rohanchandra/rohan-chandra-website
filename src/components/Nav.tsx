@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TitleQuery } from "-/graphqlTypes";
 
 const NavStyles = styled.nav`
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   font-size: 1.2rem;
 
   ul {
@@ -17,7 +17,7 @@ const NavStyles = styled.nav`
   }
 
   li {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     display: inline;
   }
 
