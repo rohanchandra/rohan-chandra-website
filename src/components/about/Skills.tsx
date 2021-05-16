@@ -1,4 +1,4 @@
-import { skillCategories } from "../../data/about-me";
+import { initialSkillIndex, skillCategories } from "../../data/about-me";
 import React, { useState } from "react";
 import styled from "styled-components";
 import SkillList from "./SkillList";
@@ -13,7 +13,7 @@ const SkillsStyles = styled.div`
 `;
 
 const Skills: React.FC = () => {
-  const [selectedIndex, setIndex] = useState(0);
+  const [selectedIndex, setIndex] = useState(initialSkillIndex);
   const skill = skillCategories[selectedIndex];
 
   return (

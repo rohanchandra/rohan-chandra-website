@@ -20,4 +20,6 @@ export interface Skill {
 
 export const links: Link[] = data["links"];
 
+export const initialSkillIndex: number = data["initialSkillIndex"];
+
 export const skillCategories: SkillCategory[] = data["skills"];

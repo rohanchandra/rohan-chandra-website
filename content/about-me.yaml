@@ -5,7 +5,14 @@ links:
     title: github.com/rohanchandra
   - href: "https://linkedin.com/in/rohanchandra"
     title: linkedin.com/in/rohanchandra
+initialSkillIndex: 1
 skills:
+  - name: Design
+    emoji: 🎨
+    isFeatured: false
+    skills:
+      - name: Figma
+        url: https://www.figma.com/
   - name: Build
     emoji: 🛠️
     isFeatured: true
@@ -22,12 +29,6 @@ skills:
         url: https://www.python.org/
       - name: SQL
         url: https://en.wikipedia.org/wiki/SQL
-  - name: Design
-    emoji: 🎨
-    isFeatured: false
-    skills:
-      - name: Figma
-        url: https://www.figma.com/
   - name: Launch
     emoji: 🚀
     isFeatured: false
