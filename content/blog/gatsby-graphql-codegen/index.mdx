@@ -98,9 +98,9 @@ Let's walkthough two examples to see this in action. You'll want `yarn develop` 
 
 Here's an example of using the static query hook from Gatsby. I have my Gatsby site running (with `yarn develop`, which makes the GraphQL schema accessible) and the code generator keeping an eye on any new code (`yarn codegen:watch`).
 
-Create a file of `.src/pages/codegen.tsx` with the below code. Now, visit `http://localhost:8000/codegen` to checkout your new page.
+Create a file of `./src/pages/codegen.tsx` with the below code. Now, visit `http://localhost:8000/codegen` to checkout your new page.
 
-```tsx title=.src/pages/codegen.tsx
+```tsx title=./src/pages/codegen.tsx
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { DemoQuery } from "-/graphqlTypes";
@@ -138,9 +138,9 @@ Other than these two changes, the GraphQL querying code looks like it normally w
 
 Let's also use try a page query. Again, I have my Gatsby site running with `yarn develop`, while the code generator runs in the background (`yarn codegen:watch`).
 
-Create `.src/pages/codegen.tsx` with the following code:
+Create `./src/pages/codegen.tsx` with the following code:
 
-```tsx title=.src/pages/codegen.tsx
+```tsx title=./src/pages/codegen.tsx
 import React from "react";
 import { graphql } from "gatsby";
 import { DemoQuery } from "-/graphqlTypes";
