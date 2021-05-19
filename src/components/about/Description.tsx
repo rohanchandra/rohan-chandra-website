@@ -26,11 +26,12 @@ const WaveTransition = styled(Emoji)`
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: 0.5s;
+    transition: 400ms;
     transition-timing-function: ease-in-out;
 
     &:hover {
       transform: rotate(30deg);
+      transform-origin: 50% 60%;
     }
   }
 `;
