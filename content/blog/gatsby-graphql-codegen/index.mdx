@@ -4,7 +4,7 @@ date: 2021-05-15
 emoji: ✨
 ---
 
-For my Gatsby site, I automatically generate the GraphQL query types for TypeScript, with [GraphQL Code Generator](https://www.graphql-code-generator.com/). This tool reads your Gatsby GraphQL schema, parses your code for `graphql` tags in your Gatsby code, then creates TypeScript type definitions for all the GraphQL queries.
+For my Gatsby site, I automatically generate GraphQL query types for TypeScript, with [GraphQL Code Generator](https://www.graphql-code-generator.com/). This tool reads your Gatsby GraphQL schema, parses Gatsby's code for `graphql` tags, then creates TypeScript type definitions for all the GraphQL queries.
 
 Here's how you can set-up GraphQL Code Generator in your own Gatsby site.
 
@@ -33,7 +33,7 @@ To create a production build, use gatsby build
 
 The ever-helpful Gatsby points us to `http://localhost:8000/___graphql`. This site allows you to explore your GraphQL data and schema. Here's the important part: GraphQL Code Generator can access this **same URL** to access the GraphQL schema!
 
-Next to your `package.json`, let's create a `codegen.yaml`, with the link to our schema.
+Next to your `package.json`, create a `codegen.yaml`, with the link to the schema:
 
 ```yaml title=./codegen.yaml
 overwrite: true
@@ -50,7 +50,7 @@ generates:
       maybeValue: "T"
       namingConvention:
         enumValues: "keep"
-# Uncomment to reformat with types prettier.
+# Uncomment to reformat types with prettier.
 #   hooks:
 #     afterOneFileWrite:
 #       - prettier --write
@@ -58,7 +58,7 @@ generates:
 
 ## Running the Code Generator
 
-With our code generation config set-up, let's head to the `scripts` section of `package.json`. Add in:
+With our code generation config now set up, head to the `scripts` section of `package.json`. Add in:
 
 ```json title=./package.json
 "scripts": {
@@ -82,7 +82,7 @@ export type Exact<T extends { [key: string]: unknown }> = {
 };
 ```
 
-I know what you're thinking: `yarn codegen` **every** time I write a new GraphQL query? 😢 Thankfully, with the `--watch` flag (in the second script we added above), we can regenerate types whenever the code changes:
+I know what you're thinking: `yarn codegen` **every** time I write a new GraphQL query? 😢 Thankfully, with the `--watch` flag (in the second script added in `package.json` above), we can regenerate types whenever the code changes:
 
 ```shell
 yarn codegen:watch
@@ -92,13 +92,13 @@ yarn codegen:watch
 
 The code generator parses the `graphql` tag and uses the query name as the type name.
 
-Let's walkthough two examples to see this in action. You'll want `yarn develop` and `yarn codegen:watch` running in two terminals, if you'd like to follow along.
+Let's walkthrough two examples to see this in action. You'll want `yarn develop` and `yarn codegen:watch` running in two terminals, if you'd like to follow along.
 
 ### Static Query Hook Example
 
-Here's an example of using the static query hook from Gatsby. I have my Gatsby site running (with `yarn develop`, which makes the GraphQL schema accessible) and the code generator keeping an eye on any new code (`yarn codegen:watch`).
+Here's an example of using the static query hook from Gatsby. I have my Gatsby site running (with `yarn develop`, which makes the GraphQL schema accessible) and the code generator keeping an eye on any new code (with `yarn codegen:watch`).
 
-Create a file of `./src/pages/codegen.tsx` with the below code. Now, visit `http://localhost:8000/codegen` to checkout your new page.
+Create a file of `./src/pages/codegen.tsx` with the below code. Visit `http://localhost:8000/codegen` to checkout your new page!
 
 ```tsx title=./src/pages/codegen.tsx
 import React from "react";
@@ -126,17 +126,17 @@ const CodegenPage: React.FC = () => {
 export default CodegenPage;
 ```
 
-Pay special attention to the query name: the generated type is `DemoQuery`, as I named the query "`Demo`". The generated types are in `-/graphqlTypes`, which can be auto-imported in VS Code (or your editor of choice):
+Pay special attention to the query name: the generated type is `DemoQuery`, as I named the query as `Demo`. The generated types are in the `./src/graphqlTypes.ts` file, which is imported with:
 
 ```tsx
 import { DemoQuery } from "-/graphqlTypes";
 ```
 
-Other than these two changes, the GraphQL querying code looks like it normally would.
+Other than these two changes, the code looks like it normally would without codegen.
 
 ### Page Query Example
 
-Let's also use try a page query. Again, I have my Gatsby site running with `yarn develop`, while the code generator runs in the background (`yarn codegen:watch`).
+Let's also use a page query. Again, I have my Gatsby site running with `yarn develop`, while the code generator runs in the background (`yarn codegen:watch`).
 
 Create `./src/pages/codegen.tsx` with the following code:
 
