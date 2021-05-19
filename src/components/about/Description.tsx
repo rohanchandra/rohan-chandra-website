@@ -47,11 +47,13 @@ const PaleBlueDot = styled(Emoji)`
 
     &:after {
       content: "🌏";
-      transition: 1.5s;
+      transition: 1250ms;
       transition-timing-function: ease-in-out;
+      display: inline-block;
     }
 
     &:hover:after {
+      transform: rotate(360deg);
       font-size: 0.25rem;
     }
   }
