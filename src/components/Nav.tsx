@@ -66,7 +66,7 @@ const Nav: React.FC = () => {
 
   return (
     <NavStyles>
-      <ul>
+      <ul data-testid="site-nav">
         <li>
           <Link id="home" to="/">
             {siteMetadata.title}
