@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: "Rohan Chandra",
     author: "Rohan Chandra",
-    repo: "https://github.com/rohanchandra/rohanchandra-website",
+    repo: "https://github.com/rohanchandra/rohan-chandra-website",
     description: "Software engineer in Sydney, Australia.",
   },
   plugins: [
