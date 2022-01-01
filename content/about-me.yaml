@@ -37,20 +37,6 @@ skills:
         url: https://www.docker.com/
       - name: Kubernetes
         url: https://kubernetes.io/
-  - name: Analyse
-    emoji: 🔬
-    isFeatured: false
-    skills:
-      - name: Elasticsearch
-        url: https://www.elastic.co/
-      - name: Kibana
-        url: https://www.elastic.co/kibana
-      - name: Grafana
-        url: https://grafana.com/
-      - name: R
-        url: https://www.r-project.org/
-      - name: Sentry
-        url: https://sentry.io/
   - name: Tooling
     emoji: 📏
     isFeatured: false
