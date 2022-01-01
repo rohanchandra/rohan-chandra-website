@@ -33,6 +33,8 @@ skills:
     emoji: 🚀
     isFeatured: false
     skills:
+      - name: Amazon Web Services (AWS)
+        url: https://aws.amazon.com/
       - name: Docker
         url: https://www.docker.com/
       - name: Kubernetes
