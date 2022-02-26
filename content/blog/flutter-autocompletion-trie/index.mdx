@@ -1,0 +1,421 @@
+---
+title: Using a Trie for Autocomplete in Flutter
+date: 2022-02-26
+emoji: 🌳
+---
+
+The [`retrieval`](https://pub.dev/packages/retrieval) package is a simple implementation of the trie data structure written in pure Dart.
+
+Let's combine the `retrieval` library with Flutter's Autocomplete widget for efficient lookup of auto-completions.
+
+## Autocomplete Without a Trie
+
+To start off, let's create a autocompletion UI without using a trie:
+
+1. for the autocompletion user interface, use Flutter's Autocomplete widget, and
+2. for autocompletion matches, iterate options to find those which start with the inputted search term (with the `startsWith` method).
+
+There's two interesting parts in the implementation of this.
+
+Firstly, we can use the handy Autocomplete widget that's built into Flutter, with `optionsBuilder` returning a list of possible completions:
+
+```dart
+return Autocomplete<String>(
+  optionsBuilder: (TextEditingValue textEditingValue) {
+    return findCompletions(textEditingValue.text.toLowerCase());
+  },
+  onSelected: (String selection) {
+    debugPrint('You selected $selection');
+  },
+);
+```
+
+Secondly, matches can be found by iterating all possible strings to find words which start with the user's query:
+
+```dart
+Iterable<String> findCompletions(String query) {
+  return _options.where((String option) => option.startsWith(query));
+}
+```
+
+### Sample App Code
+
+Here's a self-contained sample app which illustrates implementation of autocompletion without a trie:
+
+```dart title=./lib/main.dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(const App());
+
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: BasicAutocomplete(),
+      ),
+    );
+  }
+}
+
+class BasicAutocomplete extends StatefulWidget {
+  const BasicAutocomplete({Key? key}) : super(key: key);
+
+  @override
+  State<BasicAutocomplete> createState() => BasicAutocompleteState();
+}
+
+class BasicAutocompleteState extends State<BasicAutocomplete> {
+  static const List<String> _options = <String>[
+    'emu',
+    'echidna',
+    'cassowary',
+    'koala',
+    'kookaburra',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Autocomplete<String>(
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        return findCompletions(textEditingValue.text.toLowerCase());
+      },
+      onSelected: (String selection) {
+        debugPrint('You selected $selection');
+      },
+    );
+  }
+
+  Iterable<String> findCompletions(String query) {
+    return _options.where((String option) => option.startsWith(query));
+  }
+}
+```
+
+### Demo
+
+Click the Run button below for a demo:
+
+<iframe
+  width="100%"
+  height="500px"
+  frameBorder="0"
+  src="https://dartpad.dev/embed-flutter.html?id=3cc7cbc49484b0af3cd3f991580654bc&theme=dark"
+>
+  Browser does not support iframe. Please visit
+  https://dartpad.dev/embed-flutter.html?id=3cc7cbc49484b0af3cd3f991580654bc&theme=dark
+  directly for a demo.
+</iframe>
+
+From the demo, autocomplete is working beautifully!
+
+## Autocomplete with a Trie
+
+Let's modify the sample code above to use a trie for querying matches, instead of iterating through all possible words.
+
+### Installing Retrieval
+
+To install the `retrieval` library run:
+
+```shell
+flutter pub add retrieval
+```
+
+Your app's `pubspec.yaml` file will look like this:
+
+```yaml title=./pubspec.yaml
+dependencies:
+  retrieval: ^1.0.1
+```
+
+### Using Retrieval
+
+There's now two small changes to make use of a trie to find matching options.
+
+Firstly, when the state is created, we populate the trie by inserting all options. To the state, add a new trie instance, then populate the trie in an overridden `initState` method:
+
+```dart
+final Trie _trie = Trie();
+
+@override
+void initState() {
+  for (final option in _options) {
+    _trie.insert(option);
+  }
+  super.initState();
+}
+```
+
+Secondly, the find completions method becomes simpler. The trie handles all the logic for finding matches so we can change the `findCompletions` method to this:
+
+```dart
+Iterable<Animal> _findCompletions(String query) => _trie.find(query);
+```
+
+The behavior of the app remains the same.
+
+### Sample App Code with Trie
+
+Here's the complete code:
+
+```dart title=./lib/main.dart
+import 'package:flutter/material.dart';
+import 'package:retrieval/trie.dart';
+
+void main() => runApp(const App());
+
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: TrieAutocomplete(),
+      ),
+    );
+  }
+}
+
+class TrieAutocomplete extends StatefulWidget {
+  const TrieAutocomplete({Key? key}) : super(key: key);
+
+  @override
+  State<TrieAutocomplete> createState() => TrieAutocompleteState();
+}
+
+class TrieAutocompleteState extends State<TrieAutocomplete> {
+  static const List<String> _options = <String>[
+    'emu',
+    'echidna',
+    'cassowary',
+    'koala',
+    'kookaburra',
+  ];
+
+  final Trie _trie = Trie();
+
+  @override
+  void initState() {
+    for (final option in _options) {
+      _trie.insert(option);
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Autocomplete<String>(
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        return findCompletions(textEditingValue.text.toLowerCase());
+      },
+      onSelected: (String selection) {
+        debugPrint('You selected $selection');
+      },
+    );
+  }
+
+  Iterable<String> _findCompletions(String query) => _trie.find(query);
+}
+```
+
+## Advanced: Autocomplete with Custom Types and Trie
+
+The Retrieval library also handles custom data types.
+
+In the previous example, we stored each value as a string, so the autocompletion and the stored data type was a string.
+
+In this example, we'll create our own class, then autocomplete based on an object's value.
+
+### Creating a Custom Type
+
+Let's create an `Animal` class:
+
+```dart
+@immutable
+class Animal {
+  const Animal({
+    required this.family,
+    required this.name,
+  });
+
+  final String family;
+  final String name;
+
+  @override
+  String toString() {
+    return '$name, $family';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
+    return other is Animal && other.name == name && other.family == family;
+  }
+
+  @override
+  int get hashCode => hashValues(family, name);
+}
+```
+
+This class represents an animal with its scientific family and name.
+
+### Modifying `TrieAutocompleteState`
+
+Now we can make changes to `TrieAutocompleteState` from the last example.
+
+Replace the `_options` with a list of animals with their family so we have some sample data to play with:
+
+```dart
+static const List<Animal> _options = <Animal>[
+  Animal(name: 'emu', family: 'Casuariidae'),
+  Animal(name: 'echidna', family: 'Tachyglossidae'),
+  Animal(name: 'cassowary', family: 'Casuariidae'),
+  Animal(name: 'koala', family: 'Phascolarctidae'),
+  Animal(name: 'kookaburra', family: 'Alcedinidae'),
+];
+```
+
+The trie is changed to a [key-value trie](https://pub.dev/packages/retrieval#key-value-trie). This special type of trie links a key (the animal's name) to a value (the associated animal object):
+
+```dart
+final KeyValueTrie<Animal> _trie = KeyValueTrie();
+
+@override
+void initState() {
+  for (final option in _options) {
+    _trie.insert(option.name, option);
+  }
+  super.initState();
+}
+```
+
+Now, `_findCompletions` changes from `Iterable<String>` to `Iterable<Animal>`, as the key-value trie returns the associated value (the animal object) instead of a simple string:
+
+```dart
+Iterable<Animal> _findCompletions(String query) => _trie.find(query);
+```
+
+There's also some minor changes required for the Autocomplete widget.
+
+Flutter's Autocomplete widget needs to know how to display the custom type, for this example we'll just display the animal's name. Add the following method to the `TrieAutocompleteState`:
+
+```dart
+static String _displayStringForOption(Animal option) => option.name;
+```
+
+In the Autocomplete widget, reference this new `_displayStringForOption` method.
+
+```dart
+return Autocomplete<Animal>(
+  optionsBuilder: (TextEditingValue textEditingValue) {
+    return _findCompletions(textEditingValue.text.toLowerCase());
+  },
+  displayStringForOption: _displayStringForOption,
+  onSelected: (Animal selection) {
+    debugPrint('You selected $selection');
+  },
+);
+```
+
+Like the trie, we also need to change the type from `Autocomplete<String>` to `Autocomplete<Animal>`.
+
+### Sample App Code with Key-Value Trie
+
+Here's the complete code:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:retrieval/key_value_trie.dart';
+import 'package:retrieval/trie.dart';
+
+void main() => runApp(const App());
+
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: TrieAutocomplete(),
+      ),
+    );
+  }
+}
+
+class TrieAutocomplete extends StatefulWidget {
+  const TrieAutocomplete({Key? key}) : super(key: key);
+
+  @override
+  State<TrieAutocomplete> createState() => TrieAutocompleteState();
+}
+
+@immutable
+class Animal {
+  const Animal({
+    required this.family,
+    required this.name,
+  });
+
+  final String family;
+  final String name;
+
+  @override
+  String toString() {
+    return '$name, $family';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
+    return other is Animal && other.name == name && other.family == family;
+  }
+
+  @override
+  int get hashCode => hashValues(family, name);
+}
+
+class TrieAutocompleteState extends State<TrieAutocomplete> {
+  static const List<Animal> _options = <Animal>[
+    Animal(name: 'emu', family: 'Casuariidae'),
+    Animal(name: 'echidna', family: 'Tachyglossidae'),
+    Animal(name: 'cassowary', family: 'Casuariidae'),
+    Animal(name: 'koala', family: 'Phascolarctidae'),
+    Animal(name: 'kookaburra', family: 'Alcedinidae'),
+  ];
+
+  final KeyValueTrie<Animal> _trie = KeyValueTrie();
+
+  @override
+  void initState() {
+    for (final option in _options) {
+      _trie.insert(option.name, option);
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Autocomplete<Animal>(
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        return _findCompletions(textEditingValue.text.toLowerCase());
+      },
+      displayStringForOption: _displayStringForOption,
+      onSelected: (Animal selection) {
+        debugPrint('You selected $selection');
+      },
+    );
+  }
+
+  static String _displayStringForOption(Animal option) => option.name;
+
+  Iterable<Animal> _findCompletions(String query) => _trie.find(query);
+}
+```
