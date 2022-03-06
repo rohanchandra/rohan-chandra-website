@@ -8,7 +8,7 @@ Built with [Gatsby](https://www.gatsbyjs.com/) (+ [TypeScript](https://www.types
 
 Tested with [Cypress](https://www.cypress.io/).
 
-Deployed with [Netlify](https://www.netlify.com/) + [Cloudflare](https://www.cloudflare.com/) (DNS, Firewall, Caching).
+Deployed with [Cloudflare](https://www.cloudflare.com/) (CloudFlare Pages, DNS, Firewall, Caching).
 
 ## Development
 
