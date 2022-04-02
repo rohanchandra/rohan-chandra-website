@@ -10,10 +10,10 @@ Let's combine the `retrieval` library with Flutter's Autocomplete widget for eff
 
 ## Autocomplete Without a Trie
 
-To start off, let's create a autocompletion UI without using a trie:
+To start off, let's create an autocompletion UI without using a trie:
 
-1. for the autocompletion user interface, use Flutter's Autocomplete widget, and
-2. for autocompletion matches, iterate options to find those which start with the inputted search term (with the `startsWith` method).
+1. for the autocompletion user interface, we'll use Flutter's Autocomplete widget, and
+2. for autocompletion matches, we'll iterate options to find those which start with the inputted search term (with the `startsWith` method).
 
 There's two interesting parts in the implementation of this.
 
@@ -123,7 +123,7 @@ To install the `retrieval` library run:
 flutter pub add retrieval
 ```
 
-Your app's `pubspec.yaml` file will look like this:
+Your app's `pubspec.yaml` file will include the `retrieval` dependency:
 
 ```yaml title=./pubspec.yaml
 dependencies:
@@ -148,7 +148,7 @@ void initState() {
 }
 ```
 
-Secondly, the find completions method becomes simpler. The trie handles all the logic for finding matches so we can change the `findCompletions` method to this:
+Secondly, the method to find completions becomes simpler. The trie handles all the logic for finding matches so we can change the `findCompletions` method to this:
 
 ```dart
 Iterable<Animal> _findCompletions(String query) => _trie.find(query);
@@ -223,11 +223,11 @@ class TrieAutocompleteState extends State<TrieAutocomplete> {
 
 ## Advanced: Autocomplete with Custom Types and Trie
 
-The Retrieval library also handles custom data types.
+The `retrieval` library also handles custom data types.
 
-In the previous example, we stored each value as a string, so the autocompletion and the stored data type was a string.
+In the previous example, we stored each value as a string, so both autocompletions and the stored data type are of string type.
 
-In this example, we'll create our own class, then autocomplete based on an object's value.
+In this example, we'll create our own class, then autocomplete based on an attribute of an object.
 
 ### Creating a Custom Type
 
@@ -266,7 +266,7 @@ This class represents an animal with its scientific family and name.
 
 ### Modifying `TrieAutocompleteState`
 
-Now we can make changes to `TrieAutocompleteState` from the last example.
+Now, we can make changes to `TrieAutocompleteState` from the last example.
 
 Replace the `_options` with a list of animals with their family so we have some sample data to play with:
 
@@ -294,7 +294,7 @@ void initState() {
 }
 ```
 
-Now, `_findCompletions` changes from `Iterable<String>` to `Iterable<Animal>`, as the key-value trie returns the associated value (the animal object) instead of a simple string:
+Now, `_findCompletions` changes from `Iterable<String>` to `Iterable<Animal>`, as the key-value trie returns the associated value (the animal object):
 
 ```dart
 Iterable<Animal> _findCompletions(String query) => _trie.find(query);
@@ -308,7 +308,7 @@ Flutter's Autocomplete widget needs to know how to display the custom type, for 
 static String _displayStringForOption(Animal option) => option.name;
 ```
 
-In the Autocomplete widget, reference this new `_displayStringForOption` method.
+In the Autocomplete widget, reference this new `_displayStringForOption` method:
 
 ```dart
 return Autocomplete<Animal>(
