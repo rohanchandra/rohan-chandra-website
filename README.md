@@ -56,4 +56,4 @@ Source files for blog posts are available at `./content/blog`.
 
 ## License
 
-The MIT License
+Code is licensed under The MIT License (see `LICENSE` file). Blog posts under `./content/blog` are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
