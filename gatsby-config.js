@@ -11,6 +11,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
+    "gatsby-remark-images",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -24,7 +25,15 @@ module.exports = {
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        remarkPlugins: [remarkSlug],
+        remarkPlugins: [
+          remarkSlug,
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
       },
     },
     {
